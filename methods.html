@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OG Riley - Methods</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <style>
+        body {
+            background-color: #070900;
+            background-image: url('images/girl.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #04f704;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .starry-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            overflow: hidden;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgb(0, 202, 253);
+            border-radius: 50%;
+            animation: twinkle 60s infinite, move 10s linear infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        @keyframes move {
+            from { transform: translateY(0) translateX(0); }
+            to { transform: translateY(-100vh) translateX(100vw); }
+        }
+        .navbar {
+            background-color: #0a0a0a;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+        .navbar a {
+            color: #06daf7;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding-top: 70px;
+            text-align: center;
+        }
+        h1 {
+            color: #ffffff;
+        }
+        .method-list {
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .method {
+            margin-bottom: 20px;
+        }
+        .method h3 {
+            margin: 0;
+            color: #04f704;
+        }
+        .method p {
+            color: #cccccc;
+        }
+        .method pre {
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="starry-background"></div>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="vouches.html">Vouches</a>
+        <a href="methods.html">Methods</a> <!-- New Methods tab -->
+    </div>
+    <div class="container">
+        <h1>Methods</h1>
+        <div class="method-list">
+            <div class="method">
+                <h3>Method 1: Token Validation</h3>
+                <p>This method validates the authenticity of a Discord token.</p>
+                <pre>
+function validateToken(token) {
+    const regex = /^[\w-]{24}\.[\w-]{6}\.[\w-]{27}$/;
+    return regex.test(token);
+}
+                </pre>
+            </div>
+            <div class="method">
+                <h3>Method 2: Cooldown Check</h3>
+                <p>Check if a Discord boost token is on cooldown.</p>
+                <pre>
+async function checkCooldown(token) {
+    const response = await fetch('https://discord.com/api/v9/users/@me', {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await response.json();
+    return data.premium_since ? 'On cooldown' : 'Available';
+}
+                </pre>
+            </div>
+            <!-- Add more methods as needed -->
+        </div>
+    </div>
+    <script src="main.js"></script>
+    <script>
+        // Intersection Observer for smooth animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Starry background script
+        const numStars = 100;
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.animationDuration = `${Math.random() * 3 + 2}s, ${Math.random() * 10 + 5}s linear infinite`;
+            document.querySelector('.starry-background').appendChild(star);
+        }
+    </script>
+</body>
+</html>
