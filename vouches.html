@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OG Riley - Vouches</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="images/favicon.png" type="image/png"> <!-- Add this line -->
+    <style>
+        body {
+            background-color: #070900;
+            background-image: url('images/girl.gif'); /* Adding background GIF */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Ensure the image does not repeat */
+            background-attachment: fixed; /* Fixed background during scroll */
+            color: #04f704;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .starry-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            overflow: hidden;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgb(0, 202, 253);
+            border-radius: 50%;
+            animation: twinkle 60s infinite, move 10s linear infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        @keyframes move {
+            from { transform: translateY(0) translateX(0); }
+            to { transform: translateY(-100vh) translateX(100vw); }
+        }
+        .navbar {
+            background-color: #0a0a0a;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+        .navbar a {
+            color: #06daf7;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding-top: 70px;
+            text-align: center;
+        }
+        h1 {
+            color: #ffffff;
+        }
+        .carousel {
+            position: relative;
+            max-width: 30%; /* Adjusted width */
+            margin: auto;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+        .carousel img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="starry-background">
+        <script>
+            const numStars = 100;
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s, ${Math.random() * 10 + 5}s linear infinite`;
+                document.querySelector('.starry-background').appendChild(star);
+            }
+        </script>
+    </div>
+    <div class="navbar">
+        <a href="index.html">Home</a> <!-- Link back to the main page -->
+        <a href="vouches.html">Vouches</a> <!-- Current page link -->
+    </div>
+    <div class="container">
+        <h1>Vouches</h1>
+        <div class="carousel">
+            <img src="proofs/vouch1 (1).png" alt="Vouch 1" style="display: block;">
+            <img src="proofs/vouch1 (2).png" alt="Vouch 2" style="display: none;">
+            <img src="proofs/vouch1 (3).png" alt="Vouch 3" style="display: none;">
+            <img src="proofs/vouch1 (4).png" alt="Vouch 4" style="display: none;">
+            <img src="proofs/vouch1 (5).png" alt="Vouch 5" style="display: none;">
+            <img src="proofs/vouch1 (6).png" alt="Vouch 6" style="display: none;">
+            <img src="proofs/vouch1 (7).png" alt="Vouch 7" style="display: none;">
+            <img src="proofs/vouch1 (8).png" alt="Vouch 8" style="display: none;">
+            <img src="proofs/vouch1 (9).png" alt="Vouch 9" style="display: none;">
+            <img src="proofs/vouch1 (10).png" alt="Vouch 10" style="display: none;">
+            <img src="proofs/vouch1 (11).png" alt="Vouch 11" style="display: none;">
+            <img src="proofs/vouch1 (12).png" alt="Vouch 12" style="display: none;">
+            <img src="proofs/vouch1 (13).png" alt="Vouch 13" style="display: none;">
+            <img src="proofs/vouch1 (14).png" alt="Vouch 14" style="display: none;">
+            <!-- Add more images as needed -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </div>
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.carousel img');
+
+        function showSlides(n) {
+            if (n >= slides.length) { slideIndex = 0; }
+            if (n < 0) { slideIndex = slides.length - 1; }
+            slides.forEach((slide, index) => {
+                slide.style.display = (index === slideIndex) ? 'block' : 'none';
+            });
+        }
+
+        function plusSlides(n) {
+            slideIndex += n;
+            showSlides(slideIndex);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSlides(slideIndex);
+        });
+    </script>
+</body>
+</html>
